@@ -1,6 +1,10 @@
 import json
 from flask import Flask, render_template, request, redirect, flash, url_for
 
+import utils
+# import les fonctions du fichiers utils
+from utils import *
+
 
 def loadClubs():
     with open('clubs.json') as c:
@@ -17,19 +21,33 @@ def loadCompetitions():
 app = Flask(__name__)
 app.secret_key = 'something_special'
 
-competitions = loadCompetitions()
-clubs = loadClubs()
-
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
 
-@app.route('/showSummary', methods=['POST'])
+# Fonction qui donne les informaitons du club.
+@app.route('/showSummary', methods=['POST', 'GET'])
 def showSummary():
-    club = [club for club in clubs if club['email'] == request.form['email']][0]
-    return render_template('welcome.html', club=club, competitions=competitions)
+    # Vérification que l'on recoit bien le champ 'email' --> COTE FRONT END.
+    error_page = checkEmailData()
+    if error_page:
+        return error_page
+
+    # Vérification que notre mail existe dans la base --> COTE BACK END (validité).
+    clubs_by_email = getClubsToDictEmail(loadClubs())
+    if request.form["email"] not in clubs_by_email.keys():
+        flash("Email not valid.", 'error')
+        return render_template('index.html'), 403
+    else:
+        club = clubs_by_email[request.form["email"]]
+
+        return render_template(
+            'welcome.html',
+            club=club,
+            competitions=loadCompetitions()
+        )
 
 
 @app.route('/book/<competition>/<club>')
