@@ -79,15 +79,57 @@ def book(competition, club):
 
 @app.route('/purchasePlaces', methods=['POST'])
 def purchasePlaces():
-    club_name = request.form['club']
-    club = getClub(club_name)
-    
-    placesRequired = int(request.form['places'])
-    
-    competition_name = request.form['competition']
-    competition = getCompet(competition_name)
-    
-    
+    # Pas de club trouvé.
+    error_page = checkClubData()
+    if error_page:
+        return error_page
+    else:
+        club_name = request.form['club']
+
+    # vérification si le club existe.
+    if not clubExist(club_name):
+        flash("Unkown club.", 'error')
+        return render_template('index.html'), 401
+    else:
+        club = getClub(club_name)
+
+    # Pas de compétition trouvé.
+    error_page = checkCompetitionData(club)
+    if error_page:
+        return error_page
+    else:
+        competition_name = request.form['competition']
+
+    # Vérifie que la competition existe.
+    if not competitionExist(competition_name):
+        flash("Competition doesn't exist")
+        return render_template('welcome.html', club=club, competitions=loadCompetitions()), 404
+    else:
+        competition = getCompet(competition_name)
+
+    # Pas de places trouvés.
+    error_page = checkPlacesData(club, competition)
+    if error_page:
+        return error_page
+    else:
+        places = request.form['places']
+
+    # Nombre de places invalide 'type, value'  doit etre entre 1 - 12 --> 401/412.
+    error_page = verifyPlaces(request.form['places'], club, competition)
+    if error_page:
+        return error_page
+    else:
+        placesRequired = int(request.form['places'])
+
+    # Vérification que l'on peut reserver la competition (non terminée).
+    error_page = verifyCompetitionPlaces(competition, club, "booking.html")  # --> 410
+    if error_page:
+        return error_page
+
+    error_page = verifyClubPlaces(placesRequired, club, competition)
+    if error_page:
+        return error_page
+
     # Mise à jour de la variable globale.
     competition['numberOfPlaces'] = str(int(competition['numberOfPlaces']) - placesRequired)
     majCompet(competition)

@@ -70,6 +70,27 @@ def checkEmailData():
         return render_template('index.html'), 401
     return None
 	
+# Fonction qui verifie que le club est présent dans la requete venant de la page .
+def checkClubData():
+    if 'club' not in request.form:
+        flash("Empty club.", 'error')
+        return render_template('index.html'), 404
+    return None
+	
+# Fonction qui verifie que la competition est présent dans la requete venant de la page.
+def checkCompetitionData(club):
+    if 'competition' not in request.form:
+        flash("No competition.", 'error')
+        return render_template('welcome.html', club=club, competitions=competitions), 404
+    return None
+	
+# Fonction qui verifie que le nombre de places est présent dans la requete venant de la page.
+def checkPlacesData(club, competition):
+    if 'places' not in request.form:
+        flash("No places.", 'error')
+        return render_template('booking.html', club=club, competition=competition), 401
+    return None
+	
 # ------ DATA JSON BDD MANIPULATION ------
 # CLUBS -------------------------------
 	
@@ -170,6 +191,62 @@ def verifyCompetitionPlaces(competition, club, page):
             return render_template(page, club=club, competition=competition), 410
 
     return None
+	
+# PLACES -------------------------------
+# Fonction qui vérifie si le nombre de place demandé par le club est correct.
+def verifyPlaces(places, club, competition):
+    """
+    Fonction qui vérifie si le nombre de place demandé par le club est correct.
+
+    :param places: place que veut réserver le club
+    :type places: str
+    :param club: Nom du club
+    :type club: str
+    :param competition: nom de la compétition
+    :type competition: str
+    :return: la page html si erreur , None
+    :rtype str, None
+    """
+    global competitions, clubs
+    
+    try:
+        if int(places) <= 0 or int(places) > 12:
+            flash("Number of place isn't valid {1, ..., 12}", 'error')
+            return render_template('booking.html', club=club, competition=competition), 401
+    except ValueError:
+        flash("TypeError number of place", 'error')
+        return render_template('booking.html', club=club, competition=competition), 401
+
+    return None
+
+
+# Fonction qui vérifie si le nombre de place ets disponible pour le club la compétrition .
+def verifyClubPlaces(places, club, competition):
+    """
+
+    :param places: place que veut réserver le club
+    :type places: int
+    :param club: Nom du club
+    :type club: str
+    :param competition: nom de la compétition
+    :type competition: str
+    :return: la page html si erreur ,
+
+    """
+    global competitions, clubs
+    
+    placesRequired = int(places)
+
+    # on verifie que le nombre de place demandées est plus petit ou egal aux nombres de places disponible.
+    if int(competition['numberOfPlaces']) < placesRequired:
+        flash("Competition has not enough places")
+        return render_template('welcome.html', club=club, competitions=competitions), 412
+
+    # on verifie que le nombre de points du club est supérieur au nombre de places demandées.
+    if placesRequired > int(club["points"]):
+
+        flash("number of point isn't enough")
+        return render_template('welcome.html', club=club, competitions=competitions), 412
 	
 	
 # -------- MAJ DES POINTS
