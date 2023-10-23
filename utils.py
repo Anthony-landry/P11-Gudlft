@@ -3,6 +3,8 @@
 
 # Importation de la librairie json.
 import json
+# Import de la librairie datetime : pour la gestion des dates.
+import datetime
 # Importation du flask : micro framework open-source de développement web en Python.
 from flask import request, flash, render_template
 
@@ -38,6 +40,14 @@ def saveCompetitions(saved_competitions):
 # Variables globales.
 competitions = loadCompetitions()
 clubs = loadClubs()
+
+# ------ DATE ------
+def get_time_now():
+    return datetime.datetime.now()
+
+
+def dateString_to_date(date_str):
+    return datetime.datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S")
 
 
 # Fonction qui charge les données des compétitions du fichier JSON.
@@ -99,6 +109,67 @@ def getClubsToDictName(list_clubs):
     global competitions, clubs
     clubs_by_name = {club['name']: club for club in list_clubs}  # Les compréhensions de dictionnaire
     return clubs_by_name
+	
+# Fonction qui retourne si le club existe
+def clubExist(club):
+    global competitions, clubs
+    return club in [c["name"] for c in clubs]
+	
+# COMPETITIONS -------------------------------
+# Fonction qui vérifie que la compétition existe.
+def competitionExist(competition_name):
+    global competitions, clubs
+
+    return competition_name in [c["name"] for c in competitions]
+	
+# Fonction qui vérifie que la compétition est finie.
+def competitionIsFinished(competition):
+    global competitions, clubs
+    
+    assert competitionExist(competition["name"]), "competition doesn't exist"
+    return get_time_now() > dateString_to_date(competition["date"])
+	
+# Fonction qui vérifie que la compétition a des places disponibles.
+def competitionHasPlace(competition):
+    global competitions, clubs
+    
+    assert competitionExist(competition["name"]), "competition doesn't exist"
+    return int(competition['numberOfPlaces']) > 0
+	
+# Fonction qui vérifie que le client peux reserver des places dans une compétition.
+def verifyCompetitionPlaces(competition, club, page):
+    """
+        Fonction qui vérifie que le client peux reserver des places dans une compétition.
+    :param competition: la competition que l'on veut reserver
+    :type competition: dict
+    :param club: le club qui veut reserver
+    :type club: dict
+    :param page: le nom de la page html qui faut retourner
+    :type page: str
+    :return: la page html si erreur , None sinon
+    :rtype: str, None
+    """
+    global competitions, clubs
+    
+    assert competition in competitions
+
+    error = False
+    # on vérifie que l'on peut reserver la competition (non terminée)
+    if competitionIsFinished(competition):
+        flash("Competition is finished")
+        error = True
+
+    if not competitionHasPlace(competition):
+        flash("Competition is complete")
+        error = True
+
+    if error:
+        if "welcome" in page:
+            return render_template(page, club=club, competitions=competitions), 410
+        else:
+            return render_template(page, club=club, competition=competition), 410
+
+    return None
 	
 	
 # -------- MAJ DES POINTS

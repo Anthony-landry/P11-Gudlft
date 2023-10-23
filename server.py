@@ -50,15 +50,31 @@ def showSummary():
         )
 
 
-@app.route('/book/<competition>/<club>')
+# Fonction qui permet de demander la réservation de place.
+@app.route('/book/<competition>/<club>', methods=['POST', 'GET'])
 def book(competition, club):
-    foundClub = [c for c in clubs if c['name'] == club][0]
-    foundCompetition = [c for c in competitions if c['name'] == competition][0]
-    if foundClub and foundCompetition:
-        return render_template('booking.html', club=foundClub, competition=foundCompetition)
-    else:
-        flash("Something went wrong-please try again")
-        return render_template('welcome.html', club=club, competitions=competitions)
+    """
+    Il faut faire attention à ne pas melanger competition ici,
+    qui contient le nom de la compétition et l'object
+    competition issus du JSON sous forme de dictionnaire
+    """
+
+    # Vérification du club.
+    if not clubExist(club):
+        flash("Club doesn't exist")
+        return render_template('index.html'), 404
+
+    # Vérification de la competition.
+    if not competitionExist(competition):
+        flash("Competions doesn't exist")
+        return render_template('welcome.html'), 404
+
+    # Vérification de la date de la competition.
+    error_page = verifyCompetitionPlaces(getCompet(competition), getClub(club), 'welcome.html')
+    if error_page:
+        return error_page
+
+    return render_template('booking.html', club=getClub(club), competition=getCompet(competition))
 
 
 @app.route('/purchasePlaces', methods=['POST'])
