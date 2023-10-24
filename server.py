@@ -1,27 +1,18 @@
-import json
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+# Importation du flask : micro framework open-source de développement web en Python.
 from flask import Flask, render_template, request, redirect, flash, url_for
 
 import utils
 # import les fonctions du fichiers utils
 from utils import *
 
-
-def loadClubs():
-    with open('clubs.json') as c:
-        listOfClubs = json.load(c)['clubs']
-        return listOfClubs
-
-
-def loadCompetitions():
-    with open('competitions.json') as comps:
-        listOfCompetitions = json.load(comps)['competitions']
-        return listOfCompetitions
-
-
 app = Flask(__name__)
 app.secret_key = 'something_special'
 
 
+# Fonction qui retourne la page de connexion.
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -77,7 +68,8 @@ def book(competition, club):
     return render_template('booking.html', club=getClub(club), competition=getCompet(competition))
 
 
-@app.route('/purchasePlaces', methods=['POST'])
+# Fonction qui permet de reserver la réservation de place.
+@app.route('/purchasePlaces', methods=['POST', 'GET'])
 def purchasePlaces():
     # Pas de club trouvé.
     error_page = checkClubData()
@@ -143,12 +135,16 @@ def purchasePlaces():
     return render_template('welcome.html', club=club, competitions=loadCompetitions())
 
 
-# TODO: Add route for points display
+# Fonction qui montre un résumé de tous les clubs.
+@app.route("/displayPoints", methods=['GET'])
+def displayPoints():
+    return render_template('displayPoints.html', clubs=loadClubs())
 
 
+# Fonction pour se déconnecter du programme.
 @app.route('/logout')
 def logout():
-    return redirect(url_for('index'))
+    return render_template('index.html')
 
 
 if __name__ == "__main__":

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Club's Points | GUDLFT</title>
+		<style>
+			#points td,
+			#points th {
+				border: 1px dashed blue;
+				padding: 5px;
+			}
+			#points td:nth-child(2) {
+				text-align: right;
+			}
+            tr:nth-child(even) {
+    background-color: #CACFD2;
+}
+            tr:nth-child(odd) {
+    background-color: #99A3A4;
+}
+		</style>
+	</head>
+	<body>
+		<h2>List of CLubs</h2>
+		{% with messages = get_flashed_messages() %} {% if messages %}
+		<ul>
+			{% for message in messages %}
+			<li>{{message}}</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+		<h3>Clubs's Points :</h3>
+		<table id="points" style="border-collapse: collapse; border: 1px solid black; margin: 1px">
+			<tr>
+				<th style="border: 1px solid black; text-align: center; padding: 1em">Nom Club</th>
+				<th style="border: 1px solid black; text-align: center; padding: 1em">Nombre Points</th>
+			</tr>
+			{% for club in clubs %}
+			<tr>
+				<td style="border: 1px solid black; padding: 1em;">{{ club["name"] }}</td>
+				<td style="border: 1px solid black; padding: 1em; auto; text-align: center;">{{ club["points"] }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+		<hr />
+            <a id="welcome" href="{{url_for('showSummary')}}">welcome</a>
+		{% endwith %}
+	</body>
+</html>
