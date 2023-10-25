@@ -24,7 +24,7 @@ class TestPathDisplayPointl(unittest.TestCase):
         server = subprocess.Popen(['flask', 'run', '--port', "5000"], env=env)
 
         # route /displayPoints --> displayPoints.html
-        my_webdriver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+        my_webdriver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))  # "/tests/tests_fonctionnels/drivers/chromedriver"
         my_webdriver.get(GUDLFT_DRIVER_PATH + "displayPoints")
         self.sleeping()
 
@@ -43,3 +43,8 @@ class TestPathDisplayPointl(unittest.TestCase):
 
     def tearDown(self):
         pass
+
+
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
+

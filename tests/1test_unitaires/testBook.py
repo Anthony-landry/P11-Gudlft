@@ -20,7 +20,7 @@ class BookTestCase(unittest.TestCase):
     # - reservation pour une competition future (> aujourd'hui) avec club["points"] > 1
 
     def test_validBook_HTTPcode(self):  # TEST NOMINAL --> ça doit marcher
-
+        # on choisit un mail correct
         competition = "Book_TestUnitaire_open"
         club = "Book_Test_club"
 
@@ -28,7 +28,7 @@ class BookTestCase(unittest.TestCase):
         self.assertEqual(result.status_code, 200)
 
     def test_validBook_data(self):  # TEST NOMINAL --> ça doit marcher
-
+        # on choisit un mail correct
         competition = "Book_TestUnitaire_open"
         club = "Book_Test_club"
 
@@ -39,7 +39,7 @@ class BookTestCase(unittest.TestCase):
     # - date == aujourd'hui (la competition n'a pas commencée)
 
     def test_limite_Date_Book_HTTPcode(self):  # TEST LIMIT --> ça doit marcher
-
+        # on choisit un mail correct
         competition = "Book_TestUnitaire_limit"
         club = "Book_Test_club"
 
@@ -48,7 +48,7 @@ class BookTestCase(unittest.TestCase):
         self.assertEqual(result.status_code, 200)
 
     def test_limite_Date_Book_data(self):  # TEST LIMIT --> ça doit marcher
-
+        # on choisit un mail correct
         competition = "Book_TestUnitaire_limit"
         club = "Book_Test_club"
 
@@ -59,6 +59,7 @@ class BookTestCase(unittest.TestCase):
 
     def test_limite_club_point_Book_HTTPcode(self):  # TEST LIMIT --> ça doit marcher
 
+        # on choisit un mail correct
         competition = "Book_TestUnitaire_open"
         club = "Book_Test_club_limit"
 
@@ -66,7 +67,7 @@ class BookTestCase(unittest.TestCase):
         self.assertEqual(result.status_code, 200)
 
     def test_limite_club_point_Book_data(self):  # TEST LIMIT --> ça doit marcher
-
+        # on choisit un mail correct
         competition = "Book_TestUnitaire_open"
         club = "Book_Test_club_limit"
 

@@ -11,6 +11,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 import unittest
 import time
 
+
 from .const import GUDLFT_DRIVER_PATH
 
 
@@ -24,8 +25,7 @@ class TestPathPurchasePlacesFull(unittest.TestCase):
         server = subprocess.Popen(['flask', 'run', '--port', "5000"], env=env)
 
         # route / --> index.html connection
-        my_webdriver = webdriver.Chrome(service=ChromeService(
-            ChromeDriverManager().install()))
+        my_webdriver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))  #webdriver.Chrome()  # "/tests/tests_fonctionnels/drivers/chromedriver"
         my_webdriver.get(GUDLFT_DRIVER_PATH)
         self.sleeping()
         input_email = my_webdriver.find_element(webdriver.common.by.By.NAME, "email")
@@ -63,6 +63,5 @@ class TestPathPurchasePlacesFull(unittest.TestCase):
     @staticmethod
     def sleeping():
         return time.sleep(0)
-
     def tearDown(self):
         pass

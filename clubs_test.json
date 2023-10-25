@@ -1,0 +1,72 @@
+{"clubs":[
+    {
+        "name": "Purchase_Test_club",
+        "email": "test_club@email.com",
+        "points": "140"
+    },
+    {
+        "name": "Book_Test_club",
+        "email": "test_club@email.com",
+        "points": "12"
+    },
+    {
+        "name": "Book_Test_club_limit",
+        "email": "test_club@email.com",
+        "points": "1"
+    },
+    {
+        "name": "Purchase_Test_club_12_1",
+        "email": "test_club@email.com",
+        "points": "12"
+    },
+    {
+        "name": "Purchase_Test_club_12_2",
+        "email": "test_club@email.com",
+        "points": "12"
+    },
+    {
+        "name": "Purchase_Test_club_12_3",
+        "email": "test_club@email.com",
+        "points": "12"
+    },
+    {
+        "name": "Purchase_Test_club_12_4",
+        "email": "test_club@email.com",
+        "points": "12"
+    },
+    {
+        "name": "Purchase_Test_club_n",
+        "email": "test_club@email.com",
+        "points": "8"
+    },
+    {
+        "name": "Purchase_Test_club_12_5",
+        "email": "test_club@email.com",
+        "points": "12"
+    },
+    {
+        "name": "Purchase_Test_club_12_6",
+        "email": "test_club@email.com",
+        "points": "12"
+    },
+    {
+        "name": "Purchase_Test_club_10_1",
+        "email": "test_club@email.com",
+        "points": "10"
+    },
+    {
+        "name": "Purchase_Test_club_10_2",
+        "email": "test_club@email.com",
+        "points": "10"
+    },
+    {
+        "name": "Purchase_Test_club_limit",
+        "email": "test_club@email.com",
+        "points": "1"
+    },
+    {
+        "name": "Path1_MaxBestClub",
+        "email": "maxbestclub@email.com",
+        "points": "999"
+    }
+]}

@@ -6,7 +6,7 @@
 mettre le parametre **test** à *True* afin que le programme selectionne les bons fichiers de data
 """
 
-test = False
+test = True
 
 TEST = ''
 TEST2 = ''

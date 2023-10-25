@@ -22,7 +22,7 @@ class ShowSummaryTestCase(unittest.TestCase):
         pass
 
     def test_validEmail_HTTPcode(self):  # TEST NOMINAL --> ça doit marcher
-
+        # on choisit un mail correct
         club = server.clubs[0]
         email = club["email"]
 
@@ -30,7 +30,7 @@ class ShowSummaryTestCase(unittest.TestCase):
         self.assertEqual(result.status_code, 200)
 
     def test_validEmail_data(self):  # TEST NOMINAL --> ça doit marcher
-
+        # on choisit un mail correct
         club = server.clubs[0]
         email = club["email"]
 

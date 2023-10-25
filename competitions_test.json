@@ -1,0 +1,84 @@
+{
+    "competitions": [
+        {
+            "name": "Purchase_TestUnitaire_open_full_418",
+            "date": "2023-12-31 10:00:00",
+            "numberOfPlaces": "418"
+        },
+        {
+            "name": "Book_TestUnitaire_open",
+            "date": "2023-12-31 10:00:00",
+            "numberOfPlaces": "21"
+        },
+        {
+            "name": "Book_TestUnitaire_closed",
+            "date": "2023-01-01 00:00:00",
+            "numberOfPlaces": "17"
+        },
+        {
+            "name": "Purchase_TestUnitaire_open",
+            "date": "2023-12-31 10:00:00",
+            "numberOfPlaces": "150000000"
+        },
+        {
+            "name": "Book_TestUnitaire_open_full",
+            "date": "2023-12-31 10:00:00",
+            "numberOfPlaces": "0"
+        },
+        {
+            "name": "Purchase_TestUnitaire_open_full_12_1",
+            "date": "2023-12-31 10:00:00",
+            "numberOfPlaces": "12"
+        },
+        {
+            "name": "Purchase_TestUnitaire_open_full_12_2",
+            "date": "2023-12-31 10:00:00",
+            "numberOfPlaces": "12"
+        },
+        {
+            "name": "Purchase_TestUnitaire_open_full_12_3",
+            "date": "2023-12-31 10:00:00",
+            "numberOfPlaces": "12"
+        },
+        {
+            "name": "Purchase_TestUnitaire_open_full_12_4",
+            "date": "2023-12-31 10:00:00",
+            "numberOfPlaces": "12"
+        },
+        {
+            "name": "Purchase_TestUnitaire_open_full_n",
+            "date": "2023-12-31 10:00:00",
+            "numberOfPlaces": "8"
+        },
+        {
+            "name": "Purchase_TestUnitaire_open_full_n2",
+            "date": "2023-12-31 10:00:00",
+            "numberOfPlaces": "8"
+        },
+        {
+            "name": "Purchase_TestUnitaire_open_full",
+            "date": "2023-12-31 10:00:00",
+            "numberOfPlaces": "0"
+        },
+        {
+            "name": "Purchase_TestUnitaire_open_5",
+            "date": "2023-12-31 10:00:00",
+            "numberOfPlaces": "5"
+        },
+        {
+            "name": "Purchase_TestUnitaire_closed",
+            "date": "2023-01-01 00:00:00",
+            "numberOfPlaces": "17"
+        },
+        {
+            "name": "Book_TestUnitaire_limit",
+            "date": "2023-12-16 23:59:59",
+            "numberOfPlaces": "21"
+        },
+        {
+            "name": "Purchase_TestUnitaire_limit",
+            "date": "2023-12-16 23:59:59",
+            "numberOfPlaces": "21"
+        }
+    ]
+}

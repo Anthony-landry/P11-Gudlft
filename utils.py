@@ -269,12 +269,13 @@ def verifyClubPlaces(places, club, competition):
 
     # on verifie que le nombre de place demandées est plus petit ou egal aux nombres de places disponible.
     if int(competition['numberOfPlaces']) < placesRequired:
+        print(412, 1)
         flash("Competition has not enough places")
         return render_template('welcome.html', club=club, competitions=competitions), 412
 
     # on verifie que le nombre de points du club est supérieur au nombre de places demandées.
     if placesRequired > int(club["points"]):
-
+        print(412, 2)
         flash("number of point isn't enough")
         return render_template('welcome.html', club=club, competitions=competitions), 412
 

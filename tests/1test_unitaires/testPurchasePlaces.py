@@ -21,7 +21,7 @@ class PurchasePlacesTestCase(unittest.TestCase):
     # CAS NOMINAUX
     # - reservation d' 1 place pour une competition future (> aujourd'hui) avec club["points"] > 1
     def test_valide_Purchase_HTTPcode(self):  # TEST NOMINAL --> ça doit marcher
-
+        # on choisit un mail correct
         competition = "Book_TestUnitaire_open"
         club = "Purchase_Test_club"
         places = 1
@@ -30,7 +30,7 @@ class PurchasePlacesTestCase(unittest.TestCase):
         self.assertEqual(result.status_code, 200)
 
     def test_valide_Purchase_data(self):  # TEST NOMINAL --> ça doit marcher
-
+        # on choisit un mail correct
         competition = "Book_TestUnitaire_open"
         club = "Purchase_Test_club"
         club_email = "test_club@email.com"
@@ -44,7 +44,7 @@ class PurchasePlacesTestCase(unittest.TestCase):
     # future (> aujourd'hui) avec un nb de points suffisant
 
     def test_valide_Purchase_n_place_HTTPcode(self):  # TEST NOMINAL --> ça doit marcher
-
+        # on choisit un mail correct
         competition = "Book_TestUnitaire_open"
         club = "Purchase_Test_club"
         places = 7
@@ -53,7 +53,7 @@ class PurchasePlacesTestCase(unittest.TestCase):
         self.assertEqual(result.status_code, 200)
 
     def test_valide_Purchase_n_place_data(self):  # TEST NOMINAL --> ça doit marcher
-
+        # on choisit un mail correct
         competition = "Book_TestUnitaire_open"
         club = "Purchase_Test_club"
         club_email = "test_club@email.com"
@@ -67,7 +67,7 @@ class PurchasePlacesTestCase(unittest.TestCase):
     # - reservation de 12 places sur 12 places disponibles
 
     def test_limite_12_12_Purchase_HTTPcode(self):  # TEST LIMIT --> ça doit marcher
-
+        # on choisit un mail correct
         competition = "Purchase_TestUnitaire_open_full_12_1"
         club = "Purchase_Test_club_12_1"
         places = 12
@@ -76,7 +76,7 @@ class PurchasePlacesTestCase(unittest.TestCase):
         self.assertEqual(result.status_code, 200)
 
     def test_limite_12_12_Purchase_data(self):  # TEST LIMIT --> ça doit marcher
-
+        # on choisit un mail correct
         competition = "Purchase_TestUnitaire_open_full_12_2"
         club = "Purchase_Test_club_12_2"
         club_email = "test_club@email.com"
@@ -89,7 +89,7 @@ class PurchasePlacesTestCase(unittest.TestCase):
     # - reservation de 12 places sur +12 places disponibles
 
     def test_limite_12_12_plus_Purchase_HTTPcode(self):  # TEST LIMIT --> ça doit marcher
-
+        # on choisit un mail correct
         competition = "Purchase_TestUnitaire_open_full_12_3"
         club = "Purchase_Test_club_12_3"
         places = 12
@@ -98,7 +98,7 @@ class PurchasePlacesTestCase(unittest.TestCase):
         self.assertEqual(result.status_code, 200)
 
     def test_limite_12_12_plus_Purchase_data(self):  # TEST LIMIT --> ça doit marcher
-
+        # on choisit un mail correct
         competition = "Purchase_TestUnitaire_open_full_12_4"
         club = "Purchase_Test_club_12_4"
         club_email = "test_club@email.com"
@@ -111,7 +111,7 @@ class PurchasePlacesTestCase(unittest.TestCase):
     # - reservation de n (n<12) places sur n places disponibles
 
     def test_limite_n_Purchase_HTTPcode(self):  # TEST LIMIT --> ça doit marcher
-
+        # on choisit un mail correct
         competition = "Purchase_TestUnitaire_open_full_n"
         club = "Purchase_Test_club_n"
         places = 8
@@ -120,7 +120,7 @@ class PurchasePlacesTestCase(unittest.TestCase):
         self.assertEqual(result.status_code, 200)
 
     def test_limite_n_Purchase_data(self):  # TEST LIMIT --> ça doit marcher
-
+        # on choisit un mail correct
         competition = "Purchase_TestUnitaire_open_full_n2"
         club = "Purchase_Test_club_n2"
         club_email = "test_club@email.com"
@@ -133,7 +133,7 @@ class PurchasePlacesTestCase(unittest.TestCase):
     # - reservation de 12 places et club["points"] = 12 et competitions["numberOfPlaces"] > 12
 
     def test_limite_n_Purchase_HTTPcode(self):  # TEST LIMIT --> ça doit marcher
-
+        # on choisit un mail correct
         competition = "Purchase_TestUnitaire_open_full_418"
         club = "Purchase_Test_club_12_5"
         places = 12
@@ -142,7 +142,7 @@ class PurchasePlacesTestCase(unittest.TestCase):
         self.assertEqual(result.status_code, 200)
 
     def test_limite_n_Purchase_data(self):  # TEST LIMIT --> ça doit marcher
-
+        # on choisit un mail correct
         competition = "Purchase_TestUnitaire_open_full_418"
         club = "Purchase_Test_club_12_6"
         club_email = "test_club@email.com"
@@ -155,7 +155,7 @@ class PurchasePlacesTestCase(unittest.TestCase):
     # - reservation de n (n<12) places et club["points"] = n et competitions["numberOfPlaces"] > 12
 
     def test_limite_ncompet_Purchase_HTTPcode(self):  # TEST LIMIT --> ça doit marcher
-
+        # on choisit un mail correct
         competition = "Purchase_TestUnitaire_open_full_418"
         club = "Purchase_Test_club_10_1"
         places = 10
@@ -164,7 +164,7 @@ class PurchasePlacesTestCase(unittest.TestCase):
         self.assertEqual(result.status_code, 200)
 
     def test_limite_ncompet_Purchase_data(self):  # TEST LIMIT --> ça doit marcher
-
+        # on choisit un mail correct
         competition = "Purchase_TestUnitaire_open_full_418"
         club = "Purchase_Test_club_10_2"
         club_email = "test_club@email.com"
@@ -177,7 +177,7 @@ class PurchasePlacesTestCase(unittest.TestCase):
     # - date == aujourd'hui (la competition n'a pas commencée)
 
     def test_limite_Date_Purchase_HTTPcode(self):  # TEST LIMIT --> ça doit marcher
-
+        # on choisit un mail correct
         competition = "Purchase_TestUnitaire_limit"
         club = "Purchase_Test_club"
         places = 7
@@ -456,3 +456,4 @@ class PurchasePlacesTestCase(unittest.TestCase):
 
     def tearDown(self):  # after testing
         pass
+

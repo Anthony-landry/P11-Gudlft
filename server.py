@@ -146,7 +146,6 @@ def displayPoints():
 def logout():
     return render_template('index.html')
 
-
 if __name__ == "__main__":
-    #   for developing
-    app.run(debug=True)
+#   for developing
+   app.run(debug=True)

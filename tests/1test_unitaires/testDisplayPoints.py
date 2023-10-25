@@ -10,6 +10,13 @@ from server import app
 import utils
 
 PATH_TO_MAIN = "../"
+"""
+    Données en entrée : email
+     1) pas d'email
+     2) email vide
+     3) pas le bon email (inconnu)
+     4) email valide (connu)
+    """
 
 
 class DisplayPointTestCase(unittest.TestCase):
@@ -19,6 +26,7 @@ class DisplayPointTestCase(unittest.TestCase):
         pass
 
     def test_DisplayPoint_HTTPcode(self):  # TEST NOMINAL --> ça doit marcher
+        # on choisit un mail correct
 
         club = "Book_Test_club"
 
@@ -26,6 +34,7 @@ class DisplayPointTestCase(unittest.TestCase):
         self.assertEqual(result.status_code, 200)
 
     def test_DisplayPoint_data(self):  # TEST NOMINAL --> ça doit marcher
+        # on choisit un mail correct
 
         club = "Book_Test_club"
 
