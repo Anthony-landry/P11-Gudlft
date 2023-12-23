@@ -49,3 +49,19 @@
     We also like to show how well we're testing, so there's a module called 
     [coverage](https://coverage.readthedocs.io/en/coverage-5.1/) you should add to your project.
 
+
+   # Pour lancer les tests unitaires :
+
+1. dans le fichier **const.py** du repertoire principal mettre le parametre **test** a *True* afin que le programme selectionne les bons fichiers de data
+
+2. Dans les fichiers competitions_test.json à la fin, changer les dates des 2 tests unitaires et mettre la date de aujourd'hui.
+
+- Book_TestUnitaire_limit
+- Purchase_TestUnitaire_limit
+
+3. Ouvrir la console et lancer la commande 
+
+```bash
+"python -m unittest -v"
+```
+
