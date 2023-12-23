@@ -46,6 +46,47 @@
 
     You are free to use whatever testing framework you like-the main thing is that you can show what tests you are using.
 
+   
+
     We also like to show how well we're testing, so there's a module called 
     [coverage](https://coverage.readthedocs.io/en/coverage-5.1/) you should add to your project.
+
+   # Lancer les differents tests
+
+## Pour lancer les tests unitaires :
+
+1. dans le fichier **const.py** du repertoire principal mettre le parametre **test** a *True* afin que le programme selectionne les bons fichiers de data
+
+2. Dans les fichiers competitions_test.json à la fin, changer les dates des 2 tests unitaires et mettre la date de aujourd'hui.
+
+- Book_TestUnitaire_limit
+- Purchase_TestUnitaire_limit
+
+3. Ouvrir la console et lancer la commande 
+
+```bash
+"python -m unittest -v"
+```
+## Pour lancer les tests de performances :
+
+1. Ouvrir la console et lancer la commande 
+```bash
+"locust -f .\tests\4test_performance\locust.py --web-host 127.0.0.1 -H 127.0.0.1:5000"
+```
+2. lancer le serveur 
+
+3. Selectionner HOST : **http://127.0.0.1:5000/** et **6 utilisateurs**.
+
+4. si problème à demarrer le serveur il faut décommenter les lignes suivantes à la fin de **server.py**
+```bash
+		# if __name__ == "__main__":
+		#   for developing
+		#   app.run(debug=True)
+```
+## Pour lancer les tests de coverage :
+
+1. Ouvrir la console et lancer la commande 
+```bash
+"coverage run -m unittest discover; coverage report -m"
+```
 
